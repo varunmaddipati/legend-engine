@@ -570,6 +570,21 @@ public class HelperRelationalGrammarComposer
 
         }
 
+        else if (_spec instanceof RedshiftDatasourceSpecification)
+        {
+            RedshiftDatasourceSpecification spec = (RedshiftDatasourceSpecification) _spec;
+            int baseIndentation = 1;
+            return "Redshift\n" +
+                    context.getIndentationString() + getTabString(baseIndentation) + "{\n" +
+                    context.getIndentationString() + getTabString(baseIndentation + 1) + "clusterName: " + convertString(spec.clusterName, true) + ";\n" +
+                    context.getIndentationString() + getTabString(baseIndentation + 1) + "region: " + convertString(spec.region, true) + ";\n" +
+                    context.getIndentationString() + getTabString(baseIndentation + 1) + "name: " + convertString(spec.databaseName, true) + ";\n" +
+                    context.getIndentationString() + getTabString(baseIndentation + 1) + "profile: " + convertString(spec.profile, true) + ";\n" +
+                    context.getIndentationString() + getTabString(baseIndentation) + "}";
+
+        }
+
+
         return null;
     }
 
@@ -606,6 +621,17 @@ public class HelperRelationalGrammarComposer
                     context.getIndentationString() + getTabString(baseIndentation + 1) + "publicUserName: " + convertString(auth.publicUserName, true) + ";\n" +
                     context.getIndentationString() + getTabString(baseIndentation + 1) + "privateKeyVaultReference: " + convertString(auth.privateKeyVaultReference, true) + ";\n" +
                     context.getIndentationString() + getTabString(baseIndentation + 1) + "passPhraseVaultReference: " + convertString(auth.passPhraseVaultReference, true) + ";\n" +
+                    context.getIndentationString() + getTabString(baseIndentation) + "}";
+
+        }
+        else if (_auth instanceof RedshiftPublicAuthenticationStrategy)
+        {
+            RedshiftPublicAuthenticationStrategy auth = (RedshiftPublicAuthenticationStrategy) _auth;
+            int baseIndentation = 1;
+            return "RedshiftPublic" +
+                    "\n" +
+                    context.getIndentationString() + getTabString(baseIndentation) + "{\n" +
+                    context.getIndentationString() + getTabString(baseIndentation + 1) + "userName: " + convertString(auth.userName, true) + ";\n" +
                     context.getIndentationString() + getTabString(baseIndentation) + "}";
 
         }

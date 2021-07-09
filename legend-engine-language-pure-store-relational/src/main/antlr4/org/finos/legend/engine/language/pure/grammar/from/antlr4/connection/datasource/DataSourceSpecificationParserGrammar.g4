@@ -62,6 +62,26 @@ snowflakeDatasourceSpecification:           SNOWFLAKE
                                                 BRACE_CLOSE
 ;
 
+redshiftDatasourceSpecification:            REDSHIFT
+                                                BRACE_OPEN
+                                                    (
+                                                        clusterName
+                                                        | redshiftRegion
+                                                        | dbName
+                                                        | profile
+                                                    )*
+                                                BRACE_CLOSE
+;
+
+clusterName:                                CLUSTERNAME COLON STRING SEMI_COLON
+;
+
+redshiftRegion:                             REGION COLON STRING SEMI_COLON
+;
+
+profile:                                    PROFILE COLON STRING SEMI_COLON
+;
+
 dbWarehouse:                                WAREHOUSE COLON STRING SEMI_COLON
 ;
 

@@ -44,6 +44,13 @@ public class AuthenticationStrategyKeyGenerator implements AuthenticationStrateg
                     snowflakeDatasourceSpecification.publicUserName
             );
         }
+        else if (authenticationStrategy instanceof RedshiftPublicAuthenticationStrategy)
+        {
+            RedshiftPublicAuthenticationStrategy redshiftDatasourceSpecification = (RedshiftPublicAuthenticationStrategy) authenticationStrategy;
+            return new RedshiftPublicAuthenticationStrategyKey(
+                    redshiftDatasourceSpecification.userName
+            );
+        }
         return null;
     }
 }

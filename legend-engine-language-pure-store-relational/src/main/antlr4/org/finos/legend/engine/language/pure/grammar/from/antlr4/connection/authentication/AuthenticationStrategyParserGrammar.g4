@@ -37,6 +37,17 @@ snowflakePublicAuth:                    SNOWFLAKE_PUBLIC_AUTH
                                             BRACE_CLOSE
 ;
 
+redshiftPublicAuth:                     REDSHIFT_PUBLIC_AUTH
+                                            BRACE_OPEN
+                                                (
+                                                    redshiftUserName
+                                                )*
+                                            BRACE_CLOSE
+;
+
+redshiftUserName:                       REDSHIFT_USER_NAME COLON STRING SEMI_COLON
+;
+
 snowflakePublicAuthKeyVaultRef:         SNOWFLAKE_AUTH_KEY_VAULT_REFERENCE COLON STRING SEMI_COLON
 ;
 
