@@ -30,8 +30,11 @@ import org.finos.legend.engine.plan.execution.stores.relational.connection.ds.Da
 import org.finos.legend.engine.plan.execution.stores.relational.connection.ds.DataSourceWithStatistics;
 import org.finos.legend.engine.plan.execution.stores.relational.connection.ds.specifications.EmbeddedH2DataSourceSpecification;
 import org.finos.legend.engine.plan.execution.stores.relational.connection.ds.specifications.LocalH2DataSourceSpecification;
+import org.finos.legend.engine.plan.execution.stores.relational.connection.ds.specifications.RedshiftDataSourceSpecification;
 import org.finos.legend.engine.plan.execution.stores.relational.connection.ds.specifications.keys.EmbeddedH2DataSourceSpecificationKey;
 import org.finos.legend.engine.plan.execution.stores.relational.connection.ds.specifications.keys.LocalH2DataSourceSpecificationKey;
+import org.finos.legend.engine.plan.execution.stores.relational.connection.ds.specifications.keys.RedshiftDataSourceSpecificationKey;
+import org.finos.legend.engine.plan.execution.stores.relational.connection.authentication.strategy.RedshiftPublicAuthenticationStrategy;
 import org.junit.Assert;
 import org.junit.Test;
 import org.pac4j.core.profile.CommonProfile;
@@ -232,6 +235,28 @@ public class TestConnectionObjectProtocol_local extends DbSpecificTests
                         new org.finos.legend.engine.plan.execution.stores.relational.connection.driver.vendors.h2.H2Manager(),
                         new TestDatabaseAuthenticationStrategy(),
                         new RelationalExecutorInfo());
+        try (Connection connection = toDBConnection.valueOf(ds))
+        {
+            testConnection(connection, "SELECT * FROM INFORMATION_SCHEMA.TABLES");
+        }
+    }
+
+    @Test
+    public void testRedshiftConnection_profile() throws Exception
+    {
+        testRedshiftConnection(c -> c.getConnectionUsingProfiles(null));
+    }
+
+    private void testRedshiftConnection(Function<DataSourceSpecification, Connection> toDBConnection) throws Exception
+    {
+        RedshiftDataSourceSpecification ds =
+                new RedshiftDataSourceSpecification(
+                        new RedshiftDataSourceSpecificationKey(
+                                "cluster-name", "cluster-id", "region", 5439, "dev"),
+                        new org.finos.legend.engine.plan.execution.stores.relational.connection.driver.vendors.redshift.RedshiftManager(),
+                        new RedshiftPublicAuthenticationStrategy("username","password"),
+                        new RelationalExecutorInfo());
+        ;
         try (Connection connection = toDBConnection.valueOf(ds))
         {
             testConnection(connection, "SELECT * FROM INFORMATION_SCHEMA.TABLES");
