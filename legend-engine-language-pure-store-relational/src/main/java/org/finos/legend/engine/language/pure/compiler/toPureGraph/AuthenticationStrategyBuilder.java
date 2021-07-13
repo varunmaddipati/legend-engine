@@ -46,6 +46,18 @@ public class AuthenticationStrategyBuilder implements AuthenticationStrategyVisi
                     ._privateKeyVaultReference(((SnowflakePublicAuthenticationStrategy) authenticationStrategy).privateKeyVaultReference)
                     ._passPhraseVaultReference(((SnowflakePublicAuthenticationStrategy) authenticationStrategy).passPhraseVaultReference);
         }
+        else if (authenticationStrategy instanceof RedshiftPublicAuthenticationStrategy)
+        {
+            return new Root_meta_pure_alloy_connections_alloy_authentication_RedshiftPublicAuthenticationStrategy_Impl("")
+                    ._userName(((RedshiftPublicAuthenticationStrategy) authenticationStrategy).userName)
+                    ._password(((RedshiftPublicAuthenticationStrategy) authenticationStrategy).password);
+        }
+        else if (authenticationStrategy instanceof UserPasswordAuthenticationStrategy)
+        {
+            return new Root_meta_pure_alloy_connections_alloy_authentication_UserPasswordAuthenticationStrategy_Impl("")
+                    ._userName(((UserPasswordAuthenticationStrategy) authenticationStrategy).userName)
+                    ._passwordVaultReference(((UserPasswordAuthenticationStrategy) authenticationStrategy).passwordVaultReference);
+        }
         return null;
     }
 }
