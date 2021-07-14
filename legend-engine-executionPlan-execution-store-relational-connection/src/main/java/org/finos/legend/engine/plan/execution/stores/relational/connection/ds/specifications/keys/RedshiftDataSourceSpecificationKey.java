@@ -22,18 +22,18 @@ public class RedshiftDataSourceSpecificationKey implements DataSourceSpecificati
 {
     private final String clusterName;
     private final String clusterID;
-    private final String region;
-    private final int port;
     private final String databaseName;
+    private final int port;
+    private final String region;
 
 
-    public RedshiftDataSourceSpecificationKey(String clusterName, String clusterID, String region, int port, String databaseName)
+    public RedshiftDataSourceSpecificationKey(String clusterName, String clusterID, String databaseName, int port, String region)
     {
         this.clusterName = clusterName;
         this.clusterID = clusterID;
-        this.region = region;
-        this.port = port;
         this.databaseName = databaseName;
+        this.port = port;
+        this.region = region;
     }
 
     public String getClusterName()
@@ -46,9 +46,9 @@ public class RedshiftDataSourceSpecificationKey implements DataSourceSpecificati
         return clusterID;
     }
 
-    public String getRegion()
+    public String getDatabaseName()
     {
-        return region;
+        return databaseName;
     }
 
     public int getPort()
@@ -56,9 +56,9 @@ public class RedshiftDataSourceSpecificationKey implements DataSourceSpecificati
         return port;
     }
 
-    public String getDatabaseName()
+    public String getRegion()
     {
-        return databaseName;
+        return region;
     }
 
     @Override
@@ -67,9 +67,9 @@ public class RedshiftDataSourceSpecificationKey implements DataSourceSpecificati
         return "RedshiftDataSourceSpecificationKey{" +
                 "clusterName='" + clusterName + '\'' +
                 ", clusterID='" + clusterID + '\'' +
-                ", region='" + region + '\'' +
-                ", port='" + port + '\'' +
                 ", databaseName='" + databaseName + '\'' +
+                ", port='" + port + '\'' +
+                ", region='" + region + '\'' +
                 '}';
     }
 
@@ -79,9 +79,9 @@ public class RedshiftDataSourceSpecificationKey implements DataSourceSpecificati
         return "Redshift_" +
                 "clusterName:" + clusterName + "_" +
                 "clusterID:" + clusterID + "_" +
-                "region:" + region + "_" +
+                "databaseName:" + databaseName + "_" +
                 "port:" + port + "_" +
-                "databaseName:" + databaseName;
+                "region:" + region;
     }
 
     @Override
@@ -98,14 +98,14 @@ public class RedshiftDataSourceSpecificationKey implements DataSourceSpecificati
         RedshiftDataSourceSpecificationKey that = (RedshiftDataSourceSpecificationKey) o;
         return Objects.equals(clusterName, that.clusterName) &&
                 Objects.equals(clusterID, that.clusterID) &&
-                Objects.equals(region, that.region) &&
+                Objects.equals(databaseName, that.databaseName) &&
                 Objects.equals(port, that.port) &&
-                Objects.equals(databaseName, that.databaseName);
+                Objects.equals(region, that.region);
     }
 
     @Override
     public int hashCode()
     {
-        return Objects.hash(clusterName, clusterID, region, port, databaseName);
+        return Objects.hash(clusterName, clusterID, databaseName, port, region);
     }
 }

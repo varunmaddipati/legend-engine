@@ -67,9 +67,9 @@ redshiftDatasourceSpecification:            REDSHIFT
                                                     (
                                                         clusterName
                                                         | clusterID
-                                                        | redshiftRegion
-                                                        | dbPort
                                                         | dbName
+                                                        | dbPort
+                                                        | redshiftRegion
                                                     )*
                                                 BRACE_CLOSE
 ;

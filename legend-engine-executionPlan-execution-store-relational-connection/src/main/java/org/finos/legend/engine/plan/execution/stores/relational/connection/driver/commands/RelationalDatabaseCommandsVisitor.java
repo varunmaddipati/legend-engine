@@ -22,5 +22,5 @@ public interface RelationalDatabaseCommandsVisitor<T>
 {
     T visit(SnowflakeCommands snowflakeCommands);
     T visit(H2Commands h2Commands);
-    T visit(RedshiftCommands redshiftcommands);
+    T visit(RedshiftCommands redshiftCommands);
 }

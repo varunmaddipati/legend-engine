@@ -80,9 +80,9 @@ public class DataSourceSpecificationKeyGenerator implements DatasourceSpecificat
             return new RedshiftDataSourceSpecificationKey(
                     redshiftDatasourceSpecification.clusterName,
                     redshiftDatasourceSpecification.clusterID,
-                    redshiftDatasourceSpecification.region,
+                    redshiftDatasourceSpecification.databaseName,
                     redshiftDatasourceSpecification.port,
-                    redshiftDatasourceSpecification.databaseName);
+                    redshiftDatasourceSpecification.region);
         }
         return null;
     }

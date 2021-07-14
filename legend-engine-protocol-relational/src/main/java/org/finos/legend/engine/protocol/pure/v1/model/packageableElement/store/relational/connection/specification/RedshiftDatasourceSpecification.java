@@ -4,9 +4,9 @@ public class RedshiftDatasourceSpecification extends DatasourceSpecification
 {
     public String clusterName;
     public String clusterID;
-    public String region;
-    public int port;
     public String databaseName;
+    public int port;
+    public String region;
 
     @Override
     public <T> T accept(DatasourceSpecificationVisitor<T> datasourceSpecificationVisitor)

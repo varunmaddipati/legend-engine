@@ -29,9 +29,9 @@ public class RedshiftDataSourceSpecification extends DataSourceSpecification
 {
     public static String REDSHIFT_CLUSTER_NAME = "legend_redshift_clusterName";
     public static String REDSHIFT_CLUSTER_ID = "legend_redshift_clusterID";
-    public static String REDSHIFT_REGION = "legend_redshift_region";
-    public static String REDSHIFT_PORT = "legend_redshift_port";
     public static String REDSHIFT_DATABASE_NAME= "legend_redshift_databaseName";
+    public static String REDSHIFT_PORT = "legend_redshift_port";
+    public static String REDSHIFT_REGION = "legend_redshift_region";
 
 
     public RedshiftDataSourceSpecification(RedshiftDataSourceSpecificationKey key, DatabaseManager databaseManager, AuthenticationStrategy authenticationStrategy, Properties extraUserProperties, RelationalExecutorInfo relationalExecutorInfo)
@@ -40,9 +40,9 @@ public class RedshiftDataSourceSpecification extends DataSourceSpecification
 
         this.extraDatasourceProperties.put(REDSHIFT_CLUSTER_NAME, key.getClusterName());
         this.extraDatasourceProperties.put(REDSHIFT_CLUSTER_ID, key.getClusterID());
-        this.extraDatasourceProperties.put(REDSHIFT_REGION, key.getRegion());
-        this.extraDatasourceProperties.put(REDSHIFT_PORT, key.getPort());
         this.extraDatasourceProperties.put(REDSHIFT_DATABASE_NAME, key.getDatabaseName());
+        this.extraDatasourceProperties.put(REDSHIFT_PORT, key.getPort());
+        this.extraDatasourceProperties.put(REDSHIFT_REGION, key.getRegion());
 
     }
 

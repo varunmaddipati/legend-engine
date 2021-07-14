@@ -96,15 +96,15 @@ public class DataSourceSpecificationParseTreeWalker
         // clusterID
         DataSourceSpecificationParserGrammar.ClusterIDContext clusterIDCtx = PureGrammarParserUtility.validateAndExtractRequiredField(dbSpecCtx.clusterID(), "clusterID", dsSpec.sourceInformation);
         dsSpec.clusterID = PureGrammarParserUtility.fromGrammarString(clusterIDCtx.STRING().getText(), true);
-        // region
-        DataSourceSpecificationParserGrammar.RedshiftRegionContext regionCtx = PureGrammarParserUtility.validateAndExtractRequiredField(dbSpecCtx.redshiftRegion(), "region", dsSpec.sourceInformation);
-        dsSpec.region = PureGrammarParserUtility.fromGrammarString(regionCtx.STRING().getText(), true);
-        // port
-        DataSourceSpecificationParserGrammar.DbPortContext portCtx = PureGrammarParserUtility.validateAndExtractRequiredField(dbSpecCtx.dbPort(), "port", dsSpec.sourceInformation);
-        dsSpec.port = Integer.parseInt(portCtx.INTEGER().getText());
         // database name
         DataSourceSpecificationParserGrammar.DbNameContext nameCtx = PureGrammarParserUtility.validateAndExtractRequiredField(dbSpecCtx.dbName(), "name", dsSpec.sourceInformation);
         dsSpec.databaseName = PureGrammarParserUtility.fromGrammarString(nameCtx.STRING().getText(), true);
+        // port
+        DataSourceSpecificationParserGrammar.DbPortContext portCtx = PureGrammarParserUtility.validateAndExtractRequiredField(dbSpecCtx.dbPort(), "port", dsSpec.sourceInformation);
+        dsSpec.port = Integer.parseInt(portCtx.INTEGER().getText());
+        // region
+        DataSourceSpecificationParserGrammar.RedshiftRegionContext regionCtx = PureGrammarParserUtility.validateAndExtractRequiredField(dbSpecCtx.redshiftRegion(), "region", dsSpec.sourceInformation);
+        dsSpec.region = PureGrammarParserUtility.fromGrammarString(regionCtx.STRING().getText(), true);
         return dsSpec;
     }
 

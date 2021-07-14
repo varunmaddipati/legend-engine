@@ -54,9 +54,9 @@ public class TestRelationalConnectionCompilationRoundtrip
                 "  {\n" +
                 "    clusterName: 'cluster-name';\n" +
                 "    clusterID: 'cluster-id';\n" +
-                "    region: 'region';\n" +
-                "    port: 5439;\n" +
                 "    name: 'dev';\n" +
+                "    port: 5439;\n" +
+                "    region: 'region';\n" +
                 "  };\n" +
                 "  auth: UserPassword\n" +
                 "  {\n" +
