@@ -44,6 +44,14 @@ public class AuthenticationStrategyKeyGenerator implements AuthenticationStrateg
                     snowflakeDatasourceSpecification.publicUserName
             );
         }
+        else if (authenticationStrategy instanceof UserPasswordAuthenticationStrategy)
+        {
+            UserPasswordAuthenticationStrategy userPasswordAuthenticationStrategy = (UserPasswordAuthenticationStrategy) authenticationStrategy;
+            return new UserPasswordAuthenticationStrategyKey(
+                    userPasswordAuthenticationStrategy.userName,
+                    userPasswordAuthenticationStrategy.passwordVaultReference
+            );
+        }
         return null;
     }
 }

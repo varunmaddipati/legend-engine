@@ -19,3 +19,7 @@ SNOWFLAKE_PUBLIC_AUTH:                      'SnowflakePublic';
 SNOWFLAKE_AUTH_KEY_VAULT_REFERENCE:         'privateKeyVaultReference';
 SNOWFLAKE_AUTH_PASSPHRASE_VAULT_REFERENCE:  'passPhraseVaultReference';
 SNOWFLAKE_AUTH_PUBLIC_USERNAME:             'publicUserName';
+
+USER_PASSWORD:                              'UserPassword';
+USER_NAME:                                  'userName';
+PASSWORD_VAULT_REFERENCE:                   'passwordVaultReference';

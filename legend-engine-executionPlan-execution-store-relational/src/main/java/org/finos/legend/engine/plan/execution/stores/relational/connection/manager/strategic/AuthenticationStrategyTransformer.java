@@ -56,6 +56,14 @@ public class AuthenticationStrategyTransformer implements AuthenticationStrategy
                     snowflakePublicAuthenticationStrategy.publicUserName
             );
         }
+        else if (authenticationStrategy instanceof UserPasswordAuthenticationStrategy)
+        {
+            UserPasswordAuthenticationStrategy userPasswordAuthenticationStrategy = (UserPasswordAuthenticationStrategy)authenticationStrategy;
+            return new org.finos.legend.engine.plan.execution.stores.relational.connection.authentication.strategy.UserPasswordAuthenticationStrategy(
+                    userPasswordAuthenticationStrategy.userName,
+                    userPasswordAuthenticationStrategy.passwordVaultReference
+            );
+        }
         return null;
     }
 }

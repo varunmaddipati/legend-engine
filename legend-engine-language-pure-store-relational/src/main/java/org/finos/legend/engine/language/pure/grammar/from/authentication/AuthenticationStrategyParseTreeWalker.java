@@ -57,7 +57,17 @@ public class AuthenticationStrategyParseTreeWalker
         AuthenticationStrategyParserGrammar.SnowflakePublicAuthPassPhraseVaultRefContext snowflakePublicAuthPassPhraseVaultRef = PureGrammarParserUtility.validateAndExtractRequiredField(snowflakePublicAuth.snowflakePublicAuthPassPhraseVaultRef(), "passPhraseVaultReference", code.getSourceInformation());
         snowflakePublicAuthenticationStrategy.passPhraseVaultReference = PureGrammarParserUtility.fromGrammarString(snowflakePublicAuthPassPhraseVaultRef.STRING().getText(), true);
         return snowflakePublicAuthenticationStrategy;
-
-
     }
+
+    public UserPasswordAuthenticationStrategy visitUserPasswordAuthenticationStrategy(AuthenticationStrategySourceCode code, AuthenticationStrategyParserGrammar.UserPasswordAuthContext userPasswordAuth)
+    {
+        UserPasswordAuthenticationStrategy userPasswordAuthenticationStrategy = new UserPasswordAuthenticationStrategy();
+        userPasswordAuthenticationStrategy.sourceInformation = code.getSourceInformation();
+        AuthenticationStrategyParserGrammar.UserNameContext userName = PureGrammarParserUtility.validateAndExtractRequiredField(userPasswordAuth.userName(), "userName", code.getSourceInformation());
+        userPasswordAuthenticationStrategy.userName = PureGrammarParserUtility.fromGrammarString(userName.STRING().getText(), true);
+        AuthenticationStrategyParserGrammar.PasswordVaultReferenceContext passwordVaultReference = PureGrammarParserUtility.validateAndExtractRequiredField(userPasswordAuth.passwordVaultReference(), "passwordVaultReference", code.getSourceInformation());
+        userPasswordAuthenticationStrategy.passwordVaultReference = PureGrammarParserUtility.fromGrammarString(passwordVaultReference.STRING().getText(), true);
+        return userPasswordAuthenticationStrategy;
+    }
+
 }
